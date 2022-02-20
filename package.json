@@ -1,0 +1,12 @@
+{
+  "name": "express_server_api",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/katarzynakrysinska/express_server_api.git",
+  "author": "Kasia Krysińska <katarzyna.krysinska@onet.pl>",
+  "license": "MIT",
+  "dependencies": {
+    "express": "4.17.1",
+    "uuidv4": "^6.2.12"
+  }
+}
