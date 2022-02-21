@@ -1,4 +1,5 @@
 const express = require('express');
+const { redirect } = require('express/lib/response');
 const router = express.Router();
 const { v4: uuidv4 } = require('uuid');
 const db = require('../db');
@@ -19,8 +20,12 @@ router.route('/seats').post((req, res) => {
     client: req.body.client,
     email: req.body.email,
   };
-  db.seats.push(newData);
-  return res.json({message: 'ok'});
+  if(db.seats.some(checkSeat => (checkSeat.day == req.body.day && checkSeat.seat == req.body.seat))) {
+    return res.status(404).json({ message: "The seat has already been taken..."});
+  } else {
+    db.seats.push(newData);
+    return res.json({ message: "Booking complete"});
+  }
 });
 
 router.route('/seats/:id').delete((req, res) => {

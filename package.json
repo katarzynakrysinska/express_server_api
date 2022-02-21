@@ -12,6 +12,7 @@
     "uuidv4": "^6.2.12"
   },
   "scripts": {
-    "start": "npx nodemon server.js"
+    "start": "npx nodemon server.js",
+    "build": "cd client && yarn install && yarn build"
   }
 }
