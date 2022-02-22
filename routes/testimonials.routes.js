@@ -27,21 +27,19 @@ router.route('/testimonials').post((req, res) => {
 });
 
 router.route('/testimonials/:id').put((req, res) => {
-  const editedTestimonials = db.testimonials.filter((item) => item.id == req.params.id);
-  const indexOfTestimonial = db.testimonials.indexOf(editedTestimonials);
+  const editedTestimonials = db.testimonials.find((item) => item.id == req.params.id);
   const newTestimonials = {
     ...editedTestimonials,
     author: req.body.author,
     text: req.body.text,
   };
-  db.testimonials[indexOfTestimonial] = newTestimonials;
+  db.testimonials[editedTestimonials] = newTestimonials;
   return res.json({message: 'ok'});
 });
 
 router.route('/testimonials/:id').delete((req, res) => {
-  const deletedTestimonials = db.testimonials.filter((item) => item.id == req.params.id);
-  const indexOfTestimonial = db.testimonials.indexOf(deletedTestimonials);
-  db.testimonials.splice(indexOfTestimonial, 1);
+  const deletedTestimonials = db.testimonials.findIndex((item) => item.id == req.params.id);
+  db.testimonials.splice(deletedTestimonials, 1);
   return res.json({message: 'ok'});
 });
 

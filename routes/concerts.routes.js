@@ -25,15 +25,13 @@ router.route('/concerts').post((req, res) => {
 });
 
 router.route('/concerts/:id').delete((req, res) => {
-  const deletedConcerts = db.concerts.filter((item) => item.id == req.params.id);
-  const indexOfConcerts = db.concerts.indexOf(deletedConcerts);
-  db.concerts.splice(indexOfConcerts, 1);
+  const deletedConcerts = db.concerts.findIndex((item) => item.id == req.params.id);
+  db.concerts.splice(deletedConcerts, 1);
   return res.json({message: 'ok'});
 });
 
 router.route('/concerts/:id').put((req, res) => {
-  const editedConcerts = db.concerts.filter((item) => item.id == req.params.id);
-  const indexOfConcerts = db.concerts.indexOf(editedConcerts);
+  const editedConcerts = db.concerts.find((item) => item.id == req.params.id);
   const newConcert = {
     ...editedConcerts,
     performer: req.body.performer,
@@ -42,7 +40,7 @@ router.route('/concerts/:id').put((req, res) => {
     day: req.body.day,
     image: req.body.image,
   };
-  db.concerts[indexOfConcerts] = newConcert;
+  db.concerts[editedConcerts] = newConcert;
   return res.json({message: 'ok'});
 });
 

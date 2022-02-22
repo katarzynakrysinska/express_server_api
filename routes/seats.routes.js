@@ -29,23 +29,21 @@ router.route('/seats').post((req, res) => {
 });
 
 router.route('/seats/:id').delete((req, res) => {
-  const deletedSeats = db.seats.filter((item) => item.id == req.params.id);
-  const indexOfSeats = db.seats.indexOf(deletedSeats);
-  db.concerts.splice(indexOfSeats, 1);
+  const deletedSeats = db.seats.findIndex((item) => item.id == req.params.id);
+  db.seats.splice(deletedSeats, 1);
   return res.json({message: 'ok'});
 });
 
 router.route('/seats/:id').put((req, res) => {
-  const editedConcerts = db.concerts.filter((item) => item.id == req.params.id);
-  const indexOfConcerts = db.concerts.filter((item) => item.id == req.params.id);
-  const newConcert = {
-    ...editedConcerts,
+  const editedSeats = db.seats.find((item) => item.id == req.params.id);
+  const newSeats = {
+    ...editedSeats,
     day: req.body.day,
     seat: req.body.seat,
     client: req.body.client,
     email: req.body.email,
   };
-  db.concerts[indexOfConcerts] = newConcert;
+  db.seats[editedSeats] = newSeats;
   return res.json({message: 'ok'});
 });
 
