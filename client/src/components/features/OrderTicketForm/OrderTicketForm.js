@@ -1,6 +1,6 @@
 import React from 'react';
 import { Button, Form, FormGroup, Label, Input, Row, Col, Alert, Progress } from 'reactstrap';
-import { loadSeats } from '../../../redux/seatsRedux';
+//import { loadSeats } from '../../../redux/seatsRedux';
 import './OrderTicketForm.scss';
 import SeatChooser from './../SeatChooser/SeatChooserContainer';
 
@@ -45,7 +45,7 @@ class OrderTicketForm extends React.Component {
 
     if(order.client && order.email && order.day && order.seat) {
       await addSeat(order);
-      await loadSeats();
+      //await loadSeats();
       this.setState({ 
         order: {
           client: '',
