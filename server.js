@@ -2,7 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const app = express();
 const path = require('path');
-const socket = require('socket.io');
+const mongoose = require('mongoose');
 
 const testimonialsRoutes = require('./routes/testimonials.routes');
 const concertsRoutes = require('./routes/concerts.routes');
@@ -32,12 +32,18 @@ app.use((req, res) => {
 });
 
 // server
-const server = app.listen(process.env.PORT || 8000, () => {
-  console.log('Server is running');
+// connects our backend code with the database
+mongoose.connect('mongodb://localhost:27017/NewWaveDB', {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
 });
+const db = mongoose.connection;
 
-const io = socket(server);
+db.once('open', () => {
+  console.log('Connected to the database');
+});
+db.on('error', (err) => console.log('Error' + err));
 
-io.on('connection', (socket) => {
-  console.log('New Socket ');
+app.listen(process.env.PORT || 8000, () => {
+  console.log('Server is running');
 });
