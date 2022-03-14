@@ -7,12 +7,6 @@ const mongoose = require('mongoose');
 const testimonialsRoutes = require('./routes/testimonials.routes');
 const concertsRoutes = require('./routes/concerts.routes');
 const seatsRoutes = require('./routes/seats.routes');
-const { isPromise } = require('util/types');
-
-app.use((req, res, next) => {
-  req.io = io;
-  next();
-});
 
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
