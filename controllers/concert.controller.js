@@ -1,4 +1,4 @@
-const Seat = require('../models/concerts.model');
+const Concert = require('../models/concerts.model');
 
 exports.getAll = async (req, res) => {
   try {
@@ -80,18 +80,17 @@ exports.putItem = async (req, res) => {
 };
 
 exports.getPerformer = async (req, res) => {
-
   try {
     const performer = req.params.performer;
-    const getPerformer = await Concert.find({ performer: performer});
-    if(!getPerformer) res.status(404).json({ message: 'Not found...' });
+    const getPerformer = await Concert.find({ performer: performer });
+    if (!getPerformer) res.status(404).json({ message: 'Not found' });
     else {
       res.json(getPerformer);
     }
   } catch (err) {
     res.status(500).json({ message: err });
   }
-}
+};
 
 exports.getGenre = async (req, res) => {
   try {
@@ -122,7 +121,7 @@ exports.getPrice = async (req, res) => {
   }
 };
 
-exports.getDay = async (req, res) => {
+exports.getbyDay = async (req, res) => {
   try {
     const day = req.params.day;
     const getDay = await Concert.find({ day: day });
