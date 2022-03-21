@@ -14,13 +14,13 @@ const Concert = require('../../../models/concerts.model');
 describe('GET/api/concerts', function () {
 
   before(async () => {
-    const testConOne = new Concert({ _id: '5d9f1140f10a81216cfd4408', performer: 'Performer1', genre: 'Genre1', price: '20', day: '1', image: '/img/uploads/1fsd324fsdg.jpg' });
+    const testConOne = new Concert({ _id: '5d9f1140f10a81216cfd4408', performer: 'Performer1', genre: 'Genre1', price: '20', day: '2', image: '/img/uploads/1fsd324fsdg.jpg' });
     await testConOne.save();
 
     const testConTwo = new Concert({ _id: '5d9f1159f81ce8d1ef2bee48', performer: 'Performer2', genre: 'Genre2', price: '30', day: '1', image: '/img/uploads/2f342s4fsdg.jpg' });
     await testConTwo.save();
 
-    const testConThree = new Concert({ _id: '5d9f1140f10a81216cfd4400', performer: 'Performer1', genre: 'Genre1', price: '35', day: '1', image: '/img/uploads/hdfh42sd213.jpg' });
+    const testConThree = new Concert({ _id: '5d9f1140f10a81216cfd4400', performer: 'Performer1', genre: 'Genre1', price: '35', day: '4', image: '/img/uploads/hdfh42sd213.jpg' });
     await testConThree.save();
 
   });
