@@ -3,6 +3,7 @@ const cors = require('cors');
 const app = express();
 const path = require('path');
 const mongoose = require('mongoose');
+const helmet = require('helmet');
 
 const testimonialsRoutes = require('./routes/testimonials.routes');
 const concertsRoutes = require('./routes/concerts.routes');
@@ -25,6 +26,8 @@ app.use((req, res) => {
   res.status(404).json({ message: '404 not found...' });
 });
 
+app.use(helmet());
+
 // server
 // connects our backend code with the database
 mongoose.connect('mongodb+srv://${process.env.login}:${process.env.password}@cluster0.3czwf.mongodb.net/myFirstDatabase?retryWrites=true&w=majority', {
@@ -43,6 +46,3 @@ const server = app.listen(process.env.PORT || 8000, () => {
 });
 
 module.exports = server
-
-
-${process.env.login}:${process.env.password}
